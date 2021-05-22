@@ -1,0 +1,207 @@
+package com.olivier.jasmedapp.ui;
+
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentResultListener;
+import com.google.android.material.navigation.NavigationView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import android.view.Menu;
+import android.view.MenuItem;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.olivier.jasmedapp.R;
+import com.olivier.jasmedapp.contracts.MainActivityContract;
+import com.olivier.jasmedapp.model.Event;
+import com.olivier.jasmedapp.presenter.MainActivityPresenter;
+import com.olivier.jasmedapp.ui.fragments.*;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements MainActivityContract.View {
+
+    private MainActivityPresenter mMainActivityPresenter;
+
+    private Intent mLoginActivityIntent;
+
+    private DrawerLayout drawerLayout;
+    private NavigationView mNavigationView;
+
+    private FragmentManager mFragmentManager;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //init Toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //init drawerlayout in appbar
+        drawerLayout = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle actionBarDrawerToggle
+                = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        mLoginActivityIntent = new Intent(this, LoginActivity.class);
+        //init presenter
+        mMainActivityPresenter = new MainActivityPresenter();
+        mMainActivityPresenter.attach(this);
+
+        //init fragment
+        mFragmentManager = getSupportFragmentManager();
+
+        getSupportFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
+            @Override
+            public void onFragmentResult(@NonNull @NotNull String requestKey, @NonNull @NotNull Bundle bundle) {
+                ArrayList<Event> result = (ArrayList<Event>) bundle.getSerializable("userEvents");
+                mMainActivityPresenter.setUserEvents(result);
+            }
+        });
+
+        mNavigationView = findViewById(R.id.nav_view);
+        mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+
+                switch (id){
+
+                    case R.id.home:
+                        //todo:: if empty
+                        //todo:: to MVP
+                        //todo:: work on that
+
+                        if(mMainActivityPresenter.getUserEvents().isEmpty()){
+                            mFragmentManager.beginTransaction()
+                                    .replace(R.id.fragment_container_view, EmptyHomeFragment.class, null)
+                                    .commit();
+                        }else{
+                            Bundle bundle = new Bundle();
+                            HomeFragment homeFragment = new HomeFragment();
+                            bundle.putSerializable("userEvents", mMainActivityPresenter.getUserEvents());
+                            homeFragment.setArguments(bundle);
+
+                            mFragmentManager.beginTransaction()
+                                    .replace(R.id.fragment_container_view, homeFragment, null)
+                                    .commit();
+
+                        }
+
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.events:
+                        //todo:: to MVP
+                        //todo:: work on that
+                        Bundle eventBundle = new Bundle();
+                        EventsFragment eventsFragment = new EventsFragment();
+                        eventBundle.putSerializable("userEvents", mMainActivityPresenter.getUserEvents());
+                        eventsFragment.setArguments(eventBundle);
+
+                        mFragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container_view, eventsFragment, null)
+                                .commit();
+
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        //todo:: event fragment
+                        break;
+                    case R.id.gallery:
+                        //todo:: pictures fragment
+                        break;
+                    case R.id.aboutUs:
+                        //todo:: about us fragment
+                        break;
+                    case R.id.contact:
+                        //todo:: contact fragment
+                        break;
+                    case R.id.profile:
+                        mFragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container_view, UserProfileFragment.class, null)
+                                .commit();
+
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.userSettings:
+                        mFragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container_view, UserSettingsFragment.class, null)
+                                .commit();
+
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.signOut:
+                        mMainActivityPresenter.signOut();
+                        mLoginActivityIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(mLoginActivityIntent);
+                        finish();
+                        break;
+                }
+
+                return false;
+            }
+        });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        //Init main layout on activity
+        Bundle bundle = new Bundle();
+        HomeFragment homeFragment = new HomeFragment();
+        bundle.putSerializable("userEvents", mMainActivityPresenter.getUserEvents());
+        homeFragment.setArguments(bundle);
+
+        mFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container_view, homeFragment, null)
+                .commit();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        //getMenuInflater().inflate(R.menu.drawable, menu);
+
+        return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }else{
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        mMainActivityPresenter.setUserEventsDatabase();
+    }
+}

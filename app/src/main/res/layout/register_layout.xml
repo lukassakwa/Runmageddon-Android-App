@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+    <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content"
+               app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               app:srcCompat="@drawable/runmageddon_splash_screen"
+               android:minWidth="200dp"
+               android:minHeight="200dp" android:layout_marginTop="30dp" android:id="@+id/imageView"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:ems="10"
+            android:id="@+id/editTextEmailAddress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Theme.JasmedApp.Dark.EditText"
+            android:hint="email"
+            app:layout_constraintTop_toBottomOf="@+id/editTextFullName" android:layout_marginTop="10dp"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:ems="10"
+            android:id="@+id/editTextPassword"
+            app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddress"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            style="@style/Theme.JasmedApp.Dark.EditText"
+            android:hint="password"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:ems="10"
+            android:id="@+id/editTextFullName"
+            style="@style/Theme.JasmedApp.Dark.EditText"
+            android:hint="full name"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="30dp"/>
+
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="phone"
+            android:ems="10"
+            android:id="@+id/editTextPhoneNumber"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPassword" android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            style="@style/Theme.JasmedApp.Dark.EditText"
+            android:hint="phone number"/>
+
+    <Button
+            android:text="Register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/registerButton"
+            android:background="@color/grey"
+            android:textColor="@color/black"
+            android:minHeight="40dp"
+            app:layout_constraintStart_toStartOf="@+id/editTextPhoneNumber"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPhoneNumber" android:layout_marginTop="10dp"/>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
