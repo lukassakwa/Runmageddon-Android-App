@@ -7,6 +7,7 @@ import java.util.ArrayList;
 public interface MainActivityContract {
 
     interface View{
+        void setMainFragment(ArrayList<Event> events);
     }
 
     interface Presenter{

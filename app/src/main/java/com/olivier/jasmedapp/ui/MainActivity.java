@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         //init fragment
         mFragmentManager = getSupportFragmentManager();
 
+        //get user events from home and event fragment
         getSupportFragmentManager().setFragmentResultListener("requestKey", this, new FragmentResultListener() {
             @Override
             public void onFragmentResult(@NonNull @NotNull String requestKey, @NonNull @NotNull Bundle bundle) {
@@ -156,21 +157,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
-        //Init main layout on activity
-        Bundle bundle = new Bundle();
-        HomeFragment homeFragment = new HomeFragment();
-        bundle.putSerializable("userEvents", mMainActivityPresenter.getUserEvents());
-        homeFragment.setArguments(bundle);
-
-        mFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_view, homeFragment, null)
-                .commit();
-    }
-
-    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.drawable, menu);
@@ -203,5 +189,24 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
         super.onPause();
 
         mMainActivityPresenter.setUserEventsDatabase();
+    }
+
+    @Override
+    public void setMainFragment(ArrayList<Event> events) {
+
+        if(events.isEmpty()){
+            mFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_view, EmptyHomeFragment.class, null)
+                    .commit();
+        }else{
+            Bundle bundle = new Bundle();
+            HomeFragment homeFragment = new HomeFragment();
+            bundle.putSerializable("userEvents", events);
+            homeFragment.setArguments(bundle);
+
+            mFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_view, homeFragment, null)
+                    .commit();
+        }
     }
 }

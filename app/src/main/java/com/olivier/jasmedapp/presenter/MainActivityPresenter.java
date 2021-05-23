@@ -29,7 +29,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityContract.Vi
         user = auth.getCurrentUser();
         databaseReference = FirebaseDatabase.getInstance().getReference();
         userEvents = new ArrayList<>();
-        getUserEventsDatabase();
+        initApp();
     }
 
     @Override
@@ -53,12 +53,10 @@ public class MainActivityPresenter extends BasePresenter<MainActivityContract.Vi
         });
     }
 
-    @Override
-    public void signOut() {
-        auth.signOut();
-    }
-
-    private void getUserEventsDatabase() {
+    //This is async so i need to add fragment to function which task was only add elemnts to userEvents
+    //Get Main Fragment Init
+    //init the userEvents Database
+    private void initApp() {
         DatabaseReference userEventsRef = databaseReference.child("userEvents").child(user.getUid());
         userEventsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -66,6 +64,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityContract.Vi
                 for (DataSnapshot ds : snapshot.getChildren()){
                     userEvents.add(ds.getValue(Event.class));
                 }
+                view.setMainFragment(userEvents);
             }
 
             @Override
@@ -73,6 +72,11 @@ public class MainActivityPresenter extends BasePresenter<MainActivityContract.Vi
 
             }
         });
+    }
+
+    @Override
+    public void signOut() {
+        auth.signOut();
     }
 
     public ArrayList<Event> getUserEvents() {

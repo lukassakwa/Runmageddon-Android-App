@@ -38,7 +38,7 @@ public class UserHomeRVAdapter extends RecyclerView.Adapter<UserHomeRVAdapter.Vi
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         mHomeRecyclerView.getUserEvent(holder,  position);
         holder.resign.setOnClickListener((v) -> {
-            mHomeRecyclerView.setUserEventsArray(holder, position);
+            mHomeRecyclerView.setUserEventsArray(holder, holder.getAdapterPosition());
         });
     }
 
