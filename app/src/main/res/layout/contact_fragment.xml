@@ -10,38 +10,15 @@
             android:layout_height="wrap_content" android:id="@+id/textView9"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="20dp" android:textSize="24sp"/>
-    <androidx.gridlayout.widget.GridLayout
-            android:layout_width="wrap_content"
+    <EditText
+            android:layout_width="310dp"
             android:layout_height="wrap_content"
-            app:columnCount="2"
-            app:layout_constraintTop_toBottomOf="@+id/textView9"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="20dp" android:id="@+id/gridLayout3">
-
-        <TextView
-                android:layout_width="60dp"
-                android:layout_height="wrap_content"
-                android:text="FROM: "
-                android:id="@+id/textView19" android:textSize="18sp"/>
-        <EditText
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="mail@example.com"
-                android:ems="10"
-                android:id="@+id/sourceMail"/>
-        <TextView
-                android:text="TITLE:"
-                android:layout_width="60dp"
-                android:layout_height="wrap_content" android:id="@+id/textView20" android:textSize="18sp"/>
-        <EditText
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="title"
-                android:ems="10"
-                android:id="@+id/titleEditText"/>
-    </androidx.gridlayout.widget.GridLayout>
+            android:inputType="textPersonName"
+            android:hint="title"
+            android:ems="10"
+            android:id="@+id/titleEditText"
+            app:layout_constraintTop_toBottomOf="@+id/textView9" app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="20dp"/>
     <EditText
             android:id="@+id/bodyEditText"
             android:layout_width="310dp"
@@ -51,8 +28,8 @@
             android:maxLength="2000"
             android:maxLines="4"
             android:hint="body"
-            app:layout_constraintTop_toBottomOf="@+id/gridLayout3" app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toBottomOf="@+id/titleEditText"/>
     <Button
             android:text="send"
             android:layout_width="wrap_content"
