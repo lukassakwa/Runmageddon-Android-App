@@ -30,7 +30,7 @@ public class EventsFragment extends Fragment implements EventsFragmentContract.V
     private EventsFragmentPresenter mEventsFragmentPresenter;
 
     private RecyclerView eventsRV;
-    private RecyclerView.Adapter eventsRVAdapter;
+    private EventsRVAdapter eventsRVAdapter;
     private RecyclerView.LayoutManager eventRVLayoutManager;
 
     @Override

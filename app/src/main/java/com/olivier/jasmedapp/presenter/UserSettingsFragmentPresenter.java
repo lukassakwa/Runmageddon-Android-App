@@ -75,7 +75,7 @@ public class UserSettingsFragmentPresenter extends BasePresenter<UserSettingsFra
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Log.d("Profile Fragment", "User password updated.");
-                            updatePassword(password);
+                            updatePassword(newPassword);
                             view.onSuccessPasswordChange();
                         }else{
                             view.onUpdatePasswordFailure();

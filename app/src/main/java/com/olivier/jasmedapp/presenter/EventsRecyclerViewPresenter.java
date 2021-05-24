@@ -15,7 +15,11 @@ import com.olivier.jasmedapp.contracts.EventsRecyclerViewContract;
 import com.olivier.jasmedapp.model.Event;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 public class EventsRecyclerViewPresenter implements EventsRecyclerViewContract.Presenter {
 
@@ -49,10 +53,22 @@ public class EventsRecyclerViewPresenter implements EventsRecyclerViewContract.P
                 Event event = snapshot.getValue(Event.class);
                 events.add(event);
 
+                //get data from json
+                SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+                SimpleDateFormat outputDate = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+                Date outDate;
+                String dateString = "";
+                try {
+                    outDate = date.parse(event.getDate());
+                    dateString = outputDate.format(outDate);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
                 Uri imageUri = Uri.parse(event.getImage());
 
                 holder.setTitle(event.getTitle());
-                holder.setDate(event.getDate());
+                holder.setDate(dateString);
                 holder.setImage(imageUri);
             }
 
@@ -70,7 +86,7 @@ public class EventsRecyclerViewPresenter implements EventsRecyclerViewContract.P
         Event event = events.get(position);
 
         for(Event userEvent : userEvents){
-            if(userEvent.getTitle().equals(event.getTitle()))
+            if(userEvent.getDate().equals(event.getDate()))
                 ifExist = true;
         }
 

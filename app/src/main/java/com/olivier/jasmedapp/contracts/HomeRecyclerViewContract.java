@@ -4,6 +4,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import com.olivier.jasmedapp.model.Event;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 
 public interface HomeRecyclerViewContract {
@@ -15,7 +16,7 @@ public interface HomeRecyclerViewContract {
     }
 
     interface Presenter{
-        void getUserEvent(HomeRecyclerViewContract.View view, int position);
+        void getUserEvent(HomeRecyclerViewContract.View view, int position) throws ParseException;
         void setUserEventsArray(HomeRecyclerViewContract.View view, int position);
     }
 }

@@ -17,7 +17,14 @@ import com.olivier.jasmedapp.model.Event;
 import org.json.JSONObject;
 
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import static android.content.Context.MODE_PRIVATE;
@@ -33,7 +40,20 @@ public class HomeRecyclerViewPresenter implements HomeRecyclerViewContract.Prese
     @Override
     public void getUserEvent(HomeRecyclerViewContract.View view, int position) {
         Event event = userEvents.get(position);
-        view.setDate(event.getDate());
+
+        //get date from json string date
+        SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+        SimpleDateFormat outputDate = new SimpleDateFormat("dd-MM-yyyy", Locale.US);
+        Date outDate;
+        String dateString = "";
+        try {
+            outDate = date.parse(event.getDate());
+            dateString = outputDate.format(outDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        view.setDate(dateString);
         view.setTitle(event.getTitle());
 
         Uri imageUri = Uri.parse(event.getImage());

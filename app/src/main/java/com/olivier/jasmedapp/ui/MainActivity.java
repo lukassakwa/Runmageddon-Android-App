@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id = item.getItemId();
+                Bundle bundle = new Bundle();
 
                 switch (id){
 
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
                                     .replace(R.id.fragment_container_view, EmptyHomeFragment.class, null)
                                     .commit();
                         }else{
-                            Bundle bundle = new Bundle();
+
                             HomeFragment homeFragment = new HomeFragment();
                             bundle.putSerializable("userEvents", mMainActivityPresenter.getUserEvents());
                             homeFragment.setArguments(bundle);
@@ -102,45 +103,45 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
 
                         }
 
-                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.events:
                         //todo:: to MVP
                         //todo:: work on that
-                        Bundle eventBundle = new Bundle();
                         EventsFragment eventsFragment = new EventsFragment();
-                        eventBundle.putSerializable("userEvents", mMainActivityPresenter.getUserEvents());
-                        eventsFragment.setArguments(eventBundle);
+                        bundle.putSerializable("userEvents", mMainActivityPresenter.getUserEvents());
+                        eventsFragment.setArguments(bundle);
 
                         mFragmentManager.beginTransaction()
                                 .replace(R.id.fragment_container_view, eventsFragment, null)
                                 .commit();
 
-                        drawerLayout.closeDrawer(GravityCompat.START);
                         //todo:: event fragment
                         break;
                     case R.id.gallery:
-                        //todo:: pictures fragment
+                        mFragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container_view, GalleryFragment.class, null)
+                                .commit();
                         break;
                     case R.id.aboutUs:
-                        //todo:: about us fragment
+                        mFragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container_view, AboutUsFragment.class, null)
+                                .commit();
                         break;
                     case R.id.contact:
-                        //todo:: contact fragment
+                        mFragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container_view, ContactFragment.class, null)
+                                .commit();
                         break;
                     case R.id.profile:
                         mFragmentManager.beginTransaction()
                                 .replace(R.id.fragment_container_view, UserProfileFragment.class, null)
                                 .commit();
 
-                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.userSettings:
                         mFragmentManager.beginTransaction()
                                 .replace(R.id.fragment_container_view, UserSettingsFragment.class, null)
                                 .commit();
-
-                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.signOut:
                         mMainActivityPresenter.signOut();
@@ -150,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
                         break;
                 }
 
+                drawerLayout.closeDrawer(GravityCompat.START);
                 return false;
             }
         });

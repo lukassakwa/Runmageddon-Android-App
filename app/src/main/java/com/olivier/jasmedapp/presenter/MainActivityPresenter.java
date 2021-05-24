@@ -32,6 +32,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityContract.Vi
         initApp();
     }
 
+    //save user events in database
     @Override
     public void setUserEventsDatabase() {
         DatabaseReference userEventsRef = databaseReference.child("userEvents").child(user.getUid());
@@ -64,6 +65,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityContract.Vi
                 for (DataSnapshot ds : snapshot.getChildren()){
                     userEvents.add(ds.getValue(Event.class));
                 }
+                //set Main Fragment on Init app
                 view.setMainFragment(userEvents);
             }
 
