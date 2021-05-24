@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <TextView
             android:text="Contact with us"
@@ -18,21 +19,10 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginTop="20dp" android:id="@+id/gridLayout3">
 
         <TextView
-                android:text="TO:"
-                android:layout_width="40dp"
-                android:layout_height="wrap_content" android:id="@+id/textView13" android:textSize="18sp"/>
-        <EditText
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="mail@example.com"
-                android:ems="10"
-                android:id="@+id/directionMail"/>
-        <TextView
-                android:hint="FROM:"
                 android:layout_width="60dp"
-                android:layout_height="wrap_content" android:id="@+id/textView19" android:textSize="18sp"
-        />
+                android:layout_height="wrap_content"
+                android:text="FROM: "
+                android:id="@+id/textView19" android:textSize="18sp"/>
         <EditText
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
