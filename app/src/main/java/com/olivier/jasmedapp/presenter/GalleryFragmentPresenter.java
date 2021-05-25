@@ -25,7 +25,6 @@ public class GalleryFragmentPresenter extends BasePresenter<GalleryFragmentContr
         storageReference = FirebaseStorage.getInstance().getReference();
     }
 
-    //TODO:: CHANGE LOGIC!!!!!!!!!!!!!!!
     @Override
     public void init() {
         StorageReference galleryReference = storageReference.child("allPictures");
