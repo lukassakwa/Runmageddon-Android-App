@@ -39,3 +39,5 @@ Built With
 
     Firebase -  is Google's mobile platform that helps you quickly develop high-quality apps and grow your business.
     Picasso - A powerful image downloading and caching library for Android
+    Android Image Cropper - Powerful (Zoom, Rotation, Multi-Source), customizable (Shape, Limits, Style), optimized (Async, Sampling, Matrix) and simple image cropping library for Android.
+    CircularImageView - This is an Android project allowing to realize a circular ImageView in the simplest way possible.
