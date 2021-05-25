@@ -7,7 +7,7 @@ import com.olivier.jasmedapp.model.Mail;
 public class ContactFragmentPresenter extends BasePresenter<ContactFragmentContract.View> implements ContactFragmentContract.Presenter{
 
     private Intent mailIntent;
-    private final String mailTo = "sakwi.21@gmail.com";
+    private final String mailTo = "test@gmail.com";
 
     public ContactFragmentPresenter() {
     }
