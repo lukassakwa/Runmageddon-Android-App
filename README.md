@@ -29,3 +29,13 @@ User Picture Update
 
 ![userPictureUpdate](https://user-images.githubusercontent.com/75526352/119489600-22000680-bd5c-11eb-86b9-4212f2ffebe0.gif)
   
+Requirements
+
+    Android 10 (API 29) or above
+
+Tested on Pixel 2
+    
+Built With
+
+    Firebase -  is Google's mobile platform that helps you quickly develop high-quality apps and grow your business.
+    Picasso - A powerful image downloading and caching library for Android
