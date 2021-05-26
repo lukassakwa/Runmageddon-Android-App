@@ -1,7 +1,7 @@
 # RunmageddonApp
 Runmageddon App
 
-Project Review
+app overview
 
 ![projectReview](https://user-images.githubusercontent.com/75526352/119489439-fbda6680-bd5b-11eb-9b8f-d3ebb794a7be.gif)
 
