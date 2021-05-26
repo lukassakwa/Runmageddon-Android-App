@@ -45,25 +45,21 @@ public class EventsFragment extends Fragment implements EventsFragmentContract.V
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View viewRoot = inflater.inflate(R.layout.events_fragment, container, false);
 
         //TODO:: work on that
         ArrayList<Event> events = (ArrayList<Event>) getArguments().getSerializable("userEvents");
         mEventsRecyclerViewPresenter.setUserEvents(events);
 
-        return inflater.inflate(R.layout.events_fragment, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
         eventRVLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         eventsRVAdapter = new EventsRVAdapter(mEventsRecyclerViewPresenter);
 
-        eventsRV = view.findViewById(R.id.eventsRecyclerView);
+        eventsRV = viewRoot.findViewById(R.id.eventsRecyclerView);
         eventsRV.setHasFixedSize(true);
         eventsRV.setLayoutManager(eventRVLayoutManager);
         eventsRV.setAdapter(eventsRVAdapter);
+
+        return viewRoot;
     }
 
     @Override

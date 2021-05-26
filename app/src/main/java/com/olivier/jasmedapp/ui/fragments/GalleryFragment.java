@@ -41,18 +41,20 @@ public class GalleryFragment extends Fragment implements GalleryFragmentContract
     @Nullable
     @Override
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.gallery_fragment_layout, container, false);
+        View rootView = inflater.inflate(R.layout.gallery_fragment_layout, container, false);
+
+        mGalleryRV = rootView.findViewById(R.id.galleryRecyclerView);
+        mGalleryRV.setHasFixedSize(true);
+        mGalleryRV.setLayoutManager(mLayoutManager);
+
+        mGalleryFragmentPresenter.init();
+
+        return rootView;
     }
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        mGalleryRV = view.findViewById(R.id.galleryRecyclerView);
-        mGalleryRV.setHasFixedSize(true);
-        mGalleryRV.setLayoutManager(mLayoutManager);
-
-        mGalleryFragmentPresenter.init();
     }
 
     @Override

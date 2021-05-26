@@ -36,20 +36,17 @@ public class UserProfileFragment extends Fragment implements UserProfileContract
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.profile_user_layout, container, false);
-    }
+        View rootView = inflater.inflate(R.layout.profile_user_layout, container, false);
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-        profilePictureView = view.findViewById(R.id.userImage);
-        fullNameTextView = view.findViewById(R.id.fullNameTextView);
-        emailTextView = view.findViewById(R.id.emailTextView);
-        phoneNumberTextView = view.findViewById(R.id.phoneNumberTextView);
+        profilePictureView = rootView.findViewById(R.id.userImage);
+        fullNameTextView = rootView.findViewById(R.id.fullNameTextView);
+        emailTextView = rootView.findViewById(R.id.emailTextView);
+        phoneNumberTextView = rootView.findViewById(R.id.phoneNumberTextView);
 
         mUserProfilePresenter.getUserData();
         mUserProfilePresenter.getUserPicture();
+
+        return rootView;
     }
 
     @Override

@@ -48,24 +48,21 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        View rootView = inflater.inflate(R.layout.home_layout, container, false);
+
         //TODO:: work on that
         ArrayList<Event> events = (ArrayList<Event>) getArguments().getSerializable("userEvents");
         mHomeRecyclerViewPresenter.setUserEvents(events);
 
-        return inflater.inflate(R.layout.home_layout, container, false);
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
         mUserHomeRVLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         mUserHomeRVAdapter = new UserHomeRVAdapter(mHomeRecyclerViewPresenter);
 
-        mUserHomeRV = view.findViewById(R.id.homeRecyclerView);
+        mUserHomeRV = rootView.findViewById(R.id.homeRecyclerView);
         mUserHomeRV.setHasFixedSize(true);
         mUserHomeRV.setLayoutManager(mUserHomeRVLayoutManager);
         mUserHomeRV.setAdapter(mUserHomeRVAdapter);
+
+        return rootView;
     }
 
     @Override

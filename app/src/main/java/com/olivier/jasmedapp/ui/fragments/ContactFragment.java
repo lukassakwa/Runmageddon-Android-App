@@ -41,13 +41,6 @@ public class ContactFragment extends Fragment implements ContactFragmentContract
         body = rootView.findViewById(R.id.bodyEditText);
         send = rootView.findViewById(R.id.sendButton);
 
-        return rootView;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
         send.setOnClickListener(v -> {
             String title = this.title.getText().toString();
             String body = this.body.getText().toString();
@@ -56,6 +49,8 @@ public class ContactFragment extends Fragment implements ContactFragmentContract
             mContactFragmentPresenter.sendMail(mail);
 
         });
+
+        return rootView;
     }
 
     @Override

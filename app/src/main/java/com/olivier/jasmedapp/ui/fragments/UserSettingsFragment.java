@@ -63,34 +63,36 @@ public class UserSettingsFragment extends Fragment implements UserSettingsFragme
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.user_settings_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.user_settings_fragment, container, false);
+
+        //change picture
+        changePictureButton = rootView.findViewById(R.id.pictureChangeButton);
+
+        //email layout widget init
+        emailChangeLayout = rootView.findViewById(R.id.emailChangeLayout);
+        emailAddressEditText = rootView.findViewById(R.id.newUserEmailEditText);
+        userPasswordEditText = rootView.findViewById(R.id.passwordEditText);
+        emailChangeButton = rootView.findViewById(R.id.emailChangeButton);
+        saveEmailChangeButton = rootView.findViewById(R.id.emailSaveChangesButton);
+
+        //password layout widget Init
+        passwordChangeLayout = rootView.findViewById(R.id.passwordChangeLayout);
+        currentPasswordEditText = rootView.findViewById(R.id.currentPasswordEditText);
+        newUserPasswordEditText = rootView.findViewById(R.id.newUserPasswordEditText);
+        passwordChangeButton = rootView.findViewById(R.id.passwordChangeButton);
+        passwordSaveChangesButton = rootView.findViewById(R.id.passwordSaveChangesButton);
+
+        //other user data init
+        phoneNumberEditText = rootView.findViewById(R.id.newUserPhoneEditText);
+        fullNameEditText = rootView.findViewById(R.id.newUserFullNameEditText);
+        saveChanges = rootView.findViewById(R.id.otherDataSaveChangesButton);
+
+        return rootView;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        //change picture
-        changePictureButton = view.findViewById(R.id.pictureChangeButton);
-
-        //email layout widget init
-        emailChangeLayout = view.findViewById(R.id.emailChangeLayout);
-        emailAddressEditText = view.findViewById(R.id.newUserEmailEditText);
-        userPasswordEditText = view.findViewById(R.id.passwordEditText);
-        emailChangeButton = view.findViewById(R.id.emailChangeButton);
-        saveEmailChangeButton = view.findViewById(R.id.emailSaveChangesButton);
-
-        //password layout widget Init
-        passwordChangeLayout = view.findViewById(R.id.passwordChangeLayout);
-        currentPasswordEditText = view.findViewById(R.id.currentPasswordEditText);
-        newUserPasswordEditText = view.findViewById(R.id.newUserPasswordEditText);
-        passwordChangeButton = view.findViewById(R.id.passwordChangeButton);
-        passwordSaveChangesButton = view.findViewById(R.id.passwordSaveChangesButton);
-
-        //other user data init
-        phoneNumberEditText = view.findViewById(R.id.newUserPhoneEditText);
-        fullNameEditText = view.findViewById(R.id.newUserFullNameEditText);
-        saveChanges = view.findViewById(R.id.otherDataSaveChangesButton);
 
         //picture change
         changePictureButton.setOnClickListener((v) -> {

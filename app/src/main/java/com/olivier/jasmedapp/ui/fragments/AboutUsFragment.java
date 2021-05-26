@@ -44,12 +44,6 @@ public class AboutUsFragment extends Fragment implements OnMapReadyCallback {
         return rootView;
     }
 
-    @Override
-    public void onViewCreated(@NonNull @NotNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-
     //TODO:: set permission !!!!!!!!!!!
     @SuppressLint("MissingPermission")
     @Override
