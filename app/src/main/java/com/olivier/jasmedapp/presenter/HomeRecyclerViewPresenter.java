@@ -22,10 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -72,6 +69,7 @@ public class HomeRecyclerViewPresenter implements HomeRecyclerViewContract.Prese
 
     public void setUserEvents(ArrayList<Event> userEvents) {
         this.userEvents = userEvents;
+        Collections.sort(this.userEvents);
     }
 
     public int getSize(){

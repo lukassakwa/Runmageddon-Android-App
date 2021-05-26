@@ -5,10 +5,14 @@ import com.google.firebase.database.Exclude;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 @IgnoreExtraProperties
-public class Event implements Serializable {
+public class Event implements Serializable, Comparable<Event>{
 
     private String title;
     private String date;
@@ -59,5 +63,19 @@ public class Event implements Serializable {
 
     public void setDate(String data) {
         this.date = data;
+    }
+
+    @Override
+    public int compareTo(Event o) {
+        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+        Date thisDate = null;
+        Date eventDate = null;
+        try {
+            eventDate = inputFormat.parse(o.getDate());
+            thisDate = inputFormat.parse(getDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return thisDate.compareTo(eventDate);
     }
 }
