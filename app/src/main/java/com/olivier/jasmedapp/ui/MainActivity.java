@@ -137,6 +137,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityContr
                                 .replace(R.id.fragment_container_view, ContactFragment.class, null)
                                 .commit();
                         break;
+                    case R.id.regulamin:
+                        mFragmentManager.beginTransaction()
+                                .replace(R.id.fragment_container_view, RegulaminFragment.class, null)
+                                .commit();
+                        break;
                     case R.id.profile:
                         mFragmentManager.beginTransaction()
                                 .replace(R.id.fragment_container_view, UserProfileFragment.class, null)

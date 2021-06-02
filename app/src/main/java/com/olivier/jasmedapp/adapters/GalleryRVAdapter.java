@@ -32,6 +32,12 @@ public class GalleryRVAdapter extends RecyclerView.Adapter<GalleryRVAdapter.View
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
         mGalleryRecyclerViewPresenter.getPicture(holder, position);
+        holder.imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     @Override

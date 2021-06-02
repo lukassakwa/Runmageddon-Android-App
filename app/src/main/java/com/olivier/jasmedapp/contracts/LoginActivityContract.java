@@ -1,5 +1,7 @@
 package com.olivier.jasmedapp.contracts;
 
+import com.facebook.AccessToken;
+
 public interface LoginActivityContract {
 
     interface View{
@@ -9,6 +11,7 @@ public interface LoginActivityContract {
 
     interface Presenter{
         void isUserLoggedIn();
+        void handleFacebookAccessToken(AccessToken accessToken);
         void signIn();
     }
 

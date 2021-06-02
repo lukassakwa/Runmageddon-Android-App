@@ -17,9 +17,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
+import java.util.*;
 
 public class EventsRecyclerViewPresenter implements EventsRecyclerViewContract.Presenter {
 
@@ -90,8 +88,10 @@ public class EventsRecyclerViewPresenter implements EventsRecyclerViewContract.P
                 ifExist = true;
         }
 
-        if(!ifExist)
+        if(!ifExist) {
             userEvents.add(event);
+            Collections.sort(userEvents);
+        }
     }
 
     public ArrayList<Event> getUserEvents() {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import androidx.annotation.NonNull;
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.*;
@@ -78,6 +79,7 @@ public class MainActivityPresenter extends BasePresenter<MainActivityContract.Vi
 
     @Override
     public void signOut() {
+        LoginManager.getInstance().logOut();
         auth.signOut();
     }
 

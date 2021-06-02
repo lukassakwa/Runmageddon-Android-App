@@ -69,7 +69,6 @@ public class HomeRecyclerViewPresenter implements HomeRecyclerViewContract.Prese
 
     public void setUserEvents(ArrayList<Event> userEvents) {
         this.userEvents = userEvents;
-        Collections.sort(this.userEvents);
     }
 
     public int getSize(){

@@ -56,4 +56,14 @@
             android:minHeight="40dp"
             android:minWidth="80dp"/>
 
+    <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_facebook_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="40dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
