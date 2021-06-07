@@ -33,6 +33,11 @@ public class GalleryRecyclerViewPresenter implements GalleryRecyclerViewContract
     }
 
     @Override
+    public void getFullSizePicture(GalleryRecyclerViewContract.View view, int position) {
+        view.setFullSizePicture(imagesUri.get(position));
+    }
+
+    @Override
     public int getSize() {
         return imagesUri.size();
     }

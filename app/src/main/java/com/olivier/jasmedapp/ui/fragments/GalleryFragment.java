@@ -1,5 +1,6 @@
 package com.olivier.jasmedapp.ui.fragments;
 
+import android.app.Dialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,9 +29,14 @@ public class GalleryFragment extends Fragment implements GalleryFragmentContract
     private GalleryRVAdapter mGalleryAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private Dialog dialog;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        dialog = new Dialog(getContext());
+        dialog.setContentView(R.layout.gallery_dialog_layout);
 
         mGalleryFragmentPresenter = new GalleryFragmentPresenter();
         mGalleryFragmentPresenter.attach(this);
@@ -61,7 +67,7 @@ public class GalleryFragment extends Fragment implements GalleryFragmentContract
     public void setFragment(ArrayList<Uri> imagesUri) {
         mGalleryRecyclerViewPresenter = new GalleryRecyclerViewPresenter(imagesUri);
 
-        mGalleryAdapter = new GalleryRVAdapter(mGalleryRecyclerViewPresenter);
+        mGalleryAdapter = new GalleryRVAdapter(mGalleryRecyclerViewPresenter, dialog);
         mGalleryRV.setAdapter(mGalleryAdapter);
     }
 }
