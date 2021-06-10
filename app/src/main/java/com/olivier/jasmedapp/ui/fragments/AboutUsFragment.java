@@ -36,7 +36,6 @@ public class AboutUsFragment extends Fragment implements OnMapReadyCallback {
         mapView.onCreate(savedInstanceState);
         //important
         mapView.getMapAsync(this);
-
         mapView.onResume();
 
         MapsInitializer.initialize(getActivity().getApplicationContext());
@@ -49,17 +48,13 @@ public class AboutUsFragment extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(@NonNull @NotNull GoogleMap googleMap) {
         this.mGoogleMap = googleMap;
-
         // For showing a move to my location button
         mGoogleMap.getUiSettings().setZoomControlsEnabled(true);
         mGoogleMap.setMyLocationEnabled(true);
-
         // For dropping a marker at a point on the Map
         LatLng wroclaw = new LatLng(51.1078, 17.0385);
-        mGoogleMap.addMarker(new MarkerOptions().position(wroclaw).title("Marker Title").snippet("Marker Description"));
-
+        mGoogleMap.addMarker(new MarkerOptions().position(wroclaw).title("Runmageddon").snippet("Runmageddon"));
         // For zooming automatically to the location of the marker
-        CameraPosition cameraPosition = new CameraPosition.Builder().target(wroclaw).zoom(12).build();
         mGoogleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(wroclaw, 15));
     }
 

@@ -13,7 +13,7 @@
 
     <item android:title="gallery"
           android:id="@+id/gallery"
-          android:icon="@drawable/ic_event"/>
+          android:icon="@drawable/ic_gallery"/>
 
     <item android:title="about us"
           android:id="@+id/aboutUs"
